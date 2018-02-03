@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<h1>Supplier List</h1>
+	<table>
+		<thead>
+			<tr>
+				<td>Code</td>
+				<td>Name</td>
+				<td>Contact</td>
+				<td>Email</td>
+				<td>Line 1</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="supplier : ${suppliers}">
+				<td th:text="${supplier.code}"></td>
+				<td th:text="${supplier.name}"></td>
+				<td th:text="${supplier.contact}"></td>
+				<td th:text="${supplier.email}"></td>
+				<td th:text="${supplier.supplierAddress.line1}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

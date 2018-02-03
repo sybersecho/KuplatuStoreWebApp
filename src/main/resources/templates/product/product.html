@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 col col-md-offset-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h1 class="panel-title">Product List</h1>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead class="thead-inverse">
+							<tr>
+								<td>Barcode</td>
+								<td>Name</td>
+								<td>Quantity</td>
+								<td>Sales Price</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="product : ${products}">
+								<td th:text="${product.barcode}"></td>
+								<td th:text="${product.name}"></td>
+								<td th:text="${product.quantity}"></td>
+								<td th:text="${product.salesPrice}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>
