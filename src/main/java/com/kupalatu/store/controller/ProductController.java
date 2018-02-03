@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kupalatu.store.model.Product;
-import com.kupalatu.store.repository.ProductRepository;
+import com.kupalatu.store.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,16 +15,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProductController {
 
-	private ProductRepository productRepository;
+	private ProductService productService;
 
-	public ProductController(ProductRepository productRepository) {
-		this.productRepository = productRepository;
+	public ProductController(ProductService productService) {
+		this.productService = productService;
 	}
 
 	@RequestMapping(value = "/product")
 	public String productHome(Model model) {
 		log.info("lombok");
-		List<Product> products = (List<Product>) productRepository.findAll();
+		List<Product> products = (List<Product>) productService.findAll();
 		model.addAttribute("products", products);
 
 		for (Product product : products) {
