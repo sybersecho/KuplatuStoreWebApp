@@ -1,5 +1,6 @@
-package com.kupalatu.store.service.impl;
+package com.kupalatu.store.product.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,12 +8,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.kupalatu.store.commands.ProductCommand;
-import com.kupalatu.store.converters.ProductCommandToProduct;
-import com.kupalatu.store.converters.ProductToProductCommand;
-import com.kupalatu.store.model.Product;
-import com.kupalatu.store.repository.ProductRepository;
-import com.kupalatu.store.service.ProductService;
+import com.kupalatu.store.product.commands.ProductCommand;
+import com.kupalatu.store.product.converters.ProductCommandToProduct;
+import com.kupalatu.store.product.converters.ProductToProductCommand;
+import com.kupalatu.store.product.model.Product;
+import com.kupalatu.store.product.repository.ProductRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,10 +23,6 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 	private ProductCommandToProduct commandToProduct;
 	private ProductToProductCommand productToCommand;
-
-	// public ProductServiceImpl(ProductRepository productRepository) {
-	// this.productRepository = productRepository;
-	// }
 
 	public ProductServiceImpl(ProductRepository productRepository, ProductCommandToProduct commandToProduct,
 			ProductToProductCommand productToCommand) {
@@ -59,6 +55,25 @@ public class ProductServiceImpl implements ProductService {
 		Product saved = productRepository.save(detachedProduct);
 		log.debug("Saved Product Id: {}", saved.getId());
 		return productToCommand.convert(saved);
+	}
+
+	@Override
+	public ProductCommand findOneById(Long id) {
+		Product found = findById(id);
+
+		return productToCommand.convert(found);
+	}
+
+	@Override
+	public List<ProductCommand> findAllCommands() {
+		Iterable<Product> products = findAll();
+		List<ProductCommand> commands = new ArrayList<ProductCommand>();
+
+		for (Product product : products) {
+			commands.add(productToCommand.convert(product));
+		}
+
+		return commands;
 	}
 
 }

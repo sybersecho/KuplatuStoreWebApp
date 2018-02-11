@@ -20,9 +20,11 @@
 					<h1 class="panel-title">Product</h1>
 				</div>
 			</div>
-			<div class="panel-body">
-				<form action="#" th:action="@{/product}" th:object="${product}"
-					method="post" class="form-horizontal">
+			<form th:action="@{/product/}" th:object="${product}" method="post"
+				class="form-horizontal">
+				<div class="panel-body">
+
+					<input type="hidden" th:field="*{id}">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Barcode</label>
 						<div class="col-sm-10">
@@ -48,13 +50,16 @@
 							<textarea class="form-control" th:field="*{description}" />
 						</div>
 					</div>
-				</form>
-			</div>
-			<div class="panel-footer clearfix">
-				<a href="#" class="btn btn-sm btn-danger btn-flat pull-left">Cancel</a>
-				<button class="btn btn-sm btn-primary btn-flat pull-right"
-					type="submit" id="submit" value="submit">Submit</button>
-			</div>
+
+				</div>
+				<div class="panel-footer clearfix">
+					<a href="#" class="btn btn-sm btn-danger btn-flat pull-left">Cancel</a>
+					<!-- <input type="submit"
+						class="btn btn-sm btn-primary btn-flat pull-right" value="Submit"> -->
+					<button class="btn btn-sm btn-primary btn-flat pull-right"
+						type="submit" id="submit" value="submit">Submit</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<!-- /.container -->

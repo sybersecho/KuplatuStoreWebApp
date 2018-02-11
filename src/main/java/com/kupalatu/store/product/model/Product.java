@@ -1,4 +1,4 @@
-package com.kupalatu.store.model;
+package com.kupalatu.store.product.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

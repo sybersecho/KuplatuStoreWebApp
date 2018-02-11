@@ -1,12 +1,14 @@
-package com.kupalatu.store.model;
+package com.kupalatu.store.product.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.kupalatu.store.product.model.Product;
 
 import lombok.extern.slf4j.Slf4j;
 

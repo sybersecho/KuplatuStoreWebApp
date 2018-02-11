@@ -7,9 +7,9 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.kupalatu.store.model.Address;
-import com.kupalatu.store.model.Product;
 import com.kupalatu.store.model.Supplier;
-import com.kupalatu.store.repository.ProductRepository;
+import com.kupalatu.store.product.model.Product;
+import com.kupalatu.store.product.repository.ProductRepository;
 import com.kupalatu.store.repository.SupplierRepository;
 
 @Component

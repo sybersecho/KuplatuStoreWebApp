@@ -1,4 +1,4 @@
-package com.kupalatu.store.converters;
+package com.kupalatu.store.product.converters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -10,8 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kupalatu.store.commands.ProductCommand;
-import com.kupalatu.store.model.Product;
+import com.kupalatu.store.product.commands.ProductCommand;
+import com.kupalatu.store.product.converters.ProductCommandToProduct;
+import com.kupalatu.store.product.model.Product;
 
 public class ProductCommandToProductTest {
 

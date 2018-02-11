@@ -1,11 +1,11 @@
-package com.kupalatu.store.converters;
+package com.kupalatu.store.product.converters;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import com.kupalatu.store.commands.ProductCommand;
-import com.kupalatu.store.model.Product;
+import com.kupalatu.store.product.commands.ProductCommand;
+import com.kupalatu.store.product.model.Product;
 
 import lombok.Synchronized;
 

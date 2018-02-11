@@ -1,4 +1,4 @@
-package com.kupalatu.store.commands;
+package com.kupalatu.store.product.commands;
 
 import java.math.BigDecimal;
 

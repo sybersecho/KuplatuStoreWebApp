@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -24,8 +25,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-import com.kupalatu.store.model.Product;
-import com.kupalatu.store.service.ProductService;
+import com.kupalatu.store.product.commands.ProductCommand;
+import com.kupalatu.store.product.controller.ProductController;
+import com.kupalatu.store.product.model.Product;
+import com.kupalatu.store.product.service.ProductService;
 
 public class ProductControllerTest {
 
@@ -58,33 +61,51 @@ public class ProductControllerTest {
 
 		Product p = new Product("name", "barcode", "desc", 20, BigDecimal.TEN);
 		p.setId(1L);
+		ProductCommand command = new ProductCommand();
+		command.setBarcode("barcode");
+		command.setDescription("descritption");
+		command.setId(1L);
+		command.setName("name");
+		command.setQuantity(20);
+		command.setSalesPrice(BigDecimal.TEN);
+		command.setUnit("Unit");
 
-		when(productService.findById(1L)).thenReturn(p);
+		when(productService.findOneById(1L)).thenReturn(command);
 
 		mockMvc.perform(get("/product/{id}", Long.valueOf(1))).andExpect(status().isOk())
 				.andExpect(view().name("product/show-product")).andExpect(model().attributeExists("product"));
 
-		verify(productService, times(1)).findById(1L);
+		verify(productService, times(1)).findOneById(1L);
 	}
 
-//	@SuppressWarnings("unchecked")
+	@Test
+	public void testSavingProduct() throws Exception {
+		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+
+		Product p = new Product("name", "barcode", "desc", 20, BigDecimal.TEN);
+		p.setId(1L);
+
+		mockMvc.perform(post("/product/")).andExpect(view().name("redirect:/product/"));
+	}
+
+	// @SuppressWarnings("unchecked")
 	// @Ignore
 	@Test
 	public void testProductHome() {
-		List<Product> products = new ArrayList<Product>();
-		products.add(new Product());
-		Product newProduct = new Product();
+		List<ProductCommand> products = new ArrayList<ProductCommand>();
+		products.add(new ProductCommand());
+		ProductCommand newProduct = new ProductCommand();
 		newProduct.setId(3L);
 		products.add(newProduct);
 
-		when(productService.findAll()).thenReturn(products);
+		when(productService.findAllCommands()).thenReturn(products);
 
 		ArgumentCaptor<List<Product>> argumentCaptor = ArgumentCaptor.forClass(List.class);
 
 		String viewName = productController.productHome(model);
 		assertEquals("product/product", viewName);
 
-		verify(productService, times(1)).findAll();
+		verify(productService, times(1)).findAllCommands();
 		verify(model, times(1)).addAttribute(eq("products"), argumentCaptor.capture());
 		List<Product> listInController = argumentCaptor.getValue();
 		assertEquals(2, listInController.size());

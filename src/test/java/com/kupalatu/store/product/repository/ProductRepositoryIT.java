@@ -1,4 +1,4 @@
-package com.kupalatu.store.repository;
+package com.kupalatu.store.product.repository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kupalatu.store.commands.ProductCommand;
-import com.kupalatu.store.converters.ProductCommandToProduct;
-import com.kupalatu.store.converters.ProductToProductCommand;
-import com.kupalatu.store.model.Product;
-import com.kupalatu.store.service.ProductService;
+import com.kupalatu.store.product.commands.ProductCommand;
+import com.kupalatu.store.product.converters.ProductCommandToProduct;
+import com.kupalatu.store.product.converters.ProductToProductCommand;
+import com.kupalatu.store.product.model.Product;
+import com.kupalatu.store.product.repository.ProductRepository;
+import com.kupalatu.store.product.service.ProductService;
 
 @RunWith(SpringRunner.class)
 // @DataJpaTest
